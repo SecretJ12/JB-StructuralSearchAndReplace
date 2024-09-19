@@ -7,3 +7,5 @@ lazy val root = (project in file("."))
     name := "JB-StructuralSearchAndReplace",
     idePackagePrefix := Some("de.secretj12")
   )
+
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.18" % Test
