@@ -32,4 +32,25 @@ class TreeTest extends AnyFunSuite {
     assert(tree3.toString == "()")
     assert(tree4.toString == "(((Jetbrains)))")
   }
+  test("testParser") {
+    val tree1 = new NODE(new ID("hello") :: new ID("world") :: Nil)
+    val tree2 = new NODE(Nil)
+    val s1 = "((a bb) ccc ddd)"
+    val s2 = "((()) ())"
+
+    assert(tree1 == parse(tree1.toString))
+    assert(tree2 == parse(tree2.toString))
+    assert(s1 == parse(s1).toString)
+    assert(s2 == parse(s2).toString)
+  }
+  test("testParserInvalid") {
+    val inv1 = "a b c"
+    val inv2 = "(((()) ())"
+    assertThrows[ParseException] {
+      parse(inv1)
+    }
+    assertThrows[ParseException] {
+      parse(inv2)
+    }
+  }
 }
