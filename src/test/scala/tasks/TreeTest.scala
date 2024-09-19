@@ -21,4 +21,15 @@ class TreeTest extends AnyFunSuite {
     assertResult(false)(tree1 == tree2)
     assertResult(false)(tree2 == tree3)
   }
+  test("testStringRepresentation") {
+    val tree1 = new NODE(new ID("hello") :: new ID("world") :: Nil)
+    val tree2 = new NODE(new ID("hello") :: Nil)
+    val tree3 = new NODE(Nil)
+    val tree4 = new NODE(new NODE(new NODE(new ID("Jetbrains") :: Nil) :: Nil) :: Nil)
+
+    assert(tree1.toString == "(hello world)")
+    assert(tree2.toString == "(hello)")
+    assert(tree3.toString == "()")
+    assert(tree4.toString == "(((Jetbrains)))")
+  }
 }
